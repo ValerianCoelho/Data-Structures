@@ -1,6 +1,17 @@
 #include <stdio.h>
 #include <ctype.h>
 
+char stack[100];
+int top = -1;
+
+void push(char symbol){
+    stack[++top] = symbol;
+}
+
+char pop(){
+    return stack[top--];
+}
+
 int priority(char symbol)
 {
     if(symbol == '+' || symbol == '-')
@@ -16,9 +27,8 @@ int main()
 {
     char infix[100];
     char postfix[100];
-    char stack[100];
 
-    int p = 0, top = -1; // 'p' holds the index of array postfix
+    int p = 0; // 'p' holds the index of array postfix
     char *symbol;
 
     printf("Enter the Infix Expression : ");
@@ -31,24 +41,24 @@ int main()
             postfix[p++] = *symbol;
         }
         else if(*symbol == '('){
-            stack[++top] = *symbol;
+            push(*symbol);
         }
         else if(*symbol == ')'){
             while(stack[top] != '('){
-                postfix[p++] = stack[top--];
+                postfix[p++] = pop();
             }
-            top--; // This statement pops the '(' symbol from the stack
+            pop(); // This statement pops the '(' symbol from the stack
         }
         else{
             while(priority(stack[top]) >= priority(*symbol)){
-                postfix[p++] = stack[top--];
+                postfix[p++] = pop();
             }
-            stack[++top] = *symbol;
+            push(*symbol);
         }
         symbol++;
     }
     while(top != -1){
-        postfix[p++] = stack[top--];
+        postfix[p++] = pop();
     }
     printf("Postfix Expression : %s", postfix);
     return 0;
