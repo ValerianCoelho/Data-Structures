@@ -3,7 +3,7 @@
 #include <string.h>
 #include <conio.h>
 
-#define HighlightLen 30
+#define MAX_OPTION_LENGTH 60
 
 int NewChoice, OldChoice;
 
@@ -19,7 +19,7 @@ void space(int n)
         printf(" ");
 }
 
-void displaytui(char header[], char options[][20], int n, int initialOptionHighlight)
+void displaytui(char header[], char options[][MAX_OPTION_LENGTH], int n, int initialOptionHighlight, int HighlightLen)
 {
     system("cls");
     printf("%s\n", header);
@@ -37,7 +37,7 @@ void displaytui(char header[], char options[][20], int n, int initialOptionHighl
     printf("Enter : ");
 }
 
-void UpdateDisplaytui(char options[][20], int n)
+void UpdateDisplaytui(char options[][MAX_OPTION_LENGTH], int n, int HighlightLen)
 {
     if(NewChoice == OldChoice)
         return;
@@ -57,11 +57,11 @@ void UpdateDisplaytui(char options[][20], int n)
 
 }
 
-int WhiteHighlight(char header[], char options[][20], int NumberOfOptions, int initialOptionHighlight)
+int WhiteHighlight(char header[], char options[][MAX_OPTION_LENGTH], int NumberOfOptions, int initialOptionHighlight, int HighlightLen)
 {
     char ch;
     NewChoice = OldChoice = initialOptionHighlight-1;
-    displaytui(header, options, NumberOfOptions, initialOptionHighlight);
+    displaytui(header, options, NumberOfOptions, initialOptionHighlight, HighlightLen);
     do
     {
         ch = getch();
@@ -79,7 +79,7 @@ int WhiteHighlight(char header[], char options[][20], int NumberOfOptions, int i
                 continue;
             NewChoice++;
         }
-        UpdateDisplaytui(options, NumberOfOptions);
+        UpdateDisplaytui(options, NumberOfOptions, HighlightLen);
     }while(ch!=13);
     system("cls");
     return NewChoice+1;
