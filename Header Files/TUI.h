@@ -3,7 +3,7 @@
 #include <string.h>
 #include <conio.h>
 
-#define MAX_OPTION_LENGTH 60
+#define MAX_OPTION_LENGTH 100
 
 int NewChoice, OldChoice;
 
