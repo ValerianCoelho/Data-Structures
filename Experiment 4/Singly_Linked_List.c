@@ -192,7 +192,7 @@ int main() {
     struct node *start = NULL;
     int choice, prevChoice = 1, element, item, pos;
     char Header[40] = "Choose One of the Following Options :-";  
-    char Options[9][51] = {
+    char Options[9][100] = {
                             "Traversal",
                             "Searching",
                             "Insertion at the begining of the linked list",
@@ -204,7 +204,7 @@ int main() {
                             "Reversing a singly linked list"
                         };     
     while (1) {
-        choice = WhiteHighlight(Header, Options, 9, prevChoice);
+        choice = WhiteHighlight(Header, Options, 9, prevChoice, 10);
         prevChoice = choice;
 
         switch (choice) {
@@ -266,6 +266,7 @@ int main() {
                 printf("Enter the element to be deleted : ");
                 scanf("%d", &item);
                 start = del(start, item);
+                break;
             case 8:
                 printf("The number of elements in the linked list is %d", count(start));
                 getch();
