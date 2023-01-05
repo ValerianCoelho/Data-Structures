@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "..\Header Files\TUI.h"
+#include "../../Header Files/TUI.h"
 
 struct node{
     int data;
@@ -70,11 +70,11 @@ int main()
 {
     int prevChoice = 1;
     char Header[40] = "Choose One of the Following Options :-";
-    char Options[4][20] = {"Enqueue", "Dequeue", "Peek", "Display"};
+    char Options[4][100] = {"Enqueue", "Dequeue", "Peek", "Display"};
     int choice;
 
     while(1){
-        choice = WhiteHighlight(Header, Options, 4, prevChoice);
+        choice = WhiteHighlight(Header, Options, 4, prevChoice, 20);
         prevChoice = choice;
 
         switch(choice){
