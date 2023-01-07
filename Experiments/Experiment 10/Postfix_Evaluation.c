@@ -13,6 +13,7 @@ char pop(){
 }
 
 int pow(int base, int expo){
+    int result;
     for(int i = 0; i < expo; i++)
         result *= base;
     return result;
