@@ -195,23 +195,58 @@ void search(struct node *ptr, int data){
     }
 }
 
+void printTree(struct node *ptr, int child, int depth){
+    // child:
+    // 0 - not a left or a right child
+    //-1 - Left child
+    // 1 - right child
+
+    int i;
+    for(i=0; i<depth; i++)
+        printf("³    ");
+
+    if(child == 1){
+        printf("ÃÄÄ ");
+    }
+    else if(child == -1){
+        printf("ÀÄÄ ");
+    }
+
+    if(ptr == NULL){
+        printf("NULL\n");
+        return;
+    }
+    else{
+        printf("%d\n", ptr -> data);
+    }
+
+    if(ptr -> lchild == NULL && ptr -> rchild == NULL){
+        return;
+    }
+    printTree(ptr -> rchild, 1, depth+1);
+    printTree(ptr -> lchild, -1, depth+1);
+}
+
 int main()
 {
     struct node * root = NULL;
-    root = insert(root, 3);
     root = insert(root, 2);
     root = insert(root, 1);
     root = insert(root, 4);
+    root = insert(root, 3);
+    root = insert(root, 6);
     root = insert(root, 5);
 
-    inorder(root); newline
+    // inorder(root); newline
     
-    root = delete(root, 5);
+    // root = delete(root, 5);
 
-    inorder(root); newline
+    // inorder(root); newline
 
-    minimum(root);
-    maximum(root);
-    search(root, 4);
+    // minimum(root);
+    // maximum(root);
+    // search(root, 4);
+
+    printTree(root, 0, -1);
     return 0;
 }
