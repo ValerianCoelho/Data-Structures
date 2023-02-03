@@ -12,6 +12,13 @@ char pop(){
     return stack[top--];
 }
 
+int pow(int base, int expo){
+    int result;
+    for(int i = 0; i < expo; i++)
+        result *= base;
+    return result;
+}
+
 int main()
 {
     int n1, n2, n3;
@@ -36,6 +43,7 @@ int main()
                 case '-': n3 = n1 - n2; break;
                 case '*': n3 = n1 * n2; break;
                 case '/': n3 = n1 / n2; break;
+                case '^': n3 = pow(n1, n2); break;
             }
             push(n3 + 48);
         }
